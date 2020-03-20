@@ -19,6 +19,7 @@ namespace App_Api.Models
         {
             try
             {
+
                 var lUsers = await _context.Users.ToListAsync();
 
                 if (lUsers != null)
@@ -41,6 +42,45 @@ namespace App_Api.Models
             catch (Exception lEx)
             {
                 return new Response<List<User>>()
+                {
+                    Message = lEx.Message,
+                    Status = ResultStatus.Error,
+                    Result = null
+                };
+            }
+        }
+
+
+        public async Task<Response<User>> Login(string pMail, string pPassword)
+        {
+            try
+            {
+
+                var lUser = await _context
+                                    .Users
+                                     .AsNoTracking()
+                                         .FirstOrDefaultAsync(x => x.Mail == pMail && x.Password == pPassword && x.Status == "A");
+
+                if (lUser != null)
+                {
+                    return new Response<User>()
+                    {
+                        Message = BaseMessages.SuccessGet,
+                        Status = ResultStatus.Success,
+                        Result = lUser
+                    };
+                }
+
+                return new Response<User>()
+                {
+                    Message = BaseMessages.UserNotFound,
+                    Status = ResultStatus.Success,
+                    Result = null
+                };
+            }
+            catch (Exception lEx)
+            {
+                return new Response<User>()
                 {
                     Message = lEx.Message,
                     Status = ResultStatus.Error,

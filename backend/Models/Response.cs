@@ -1,4 +1,4 @@
-
+﻿
 namespace App_Api.Models
 {
     public class Response<T> where T : class

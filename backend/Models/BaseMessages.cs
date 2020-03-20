@@ -19,6 +19,7 @@ namespace App_Api.Models
         public const string ErrorInsert = "Houve um erro ao inserir o registro";
         public const string ErrorUpdate = "Houve um erro ao atualizar o registro";
         public const string ErrorDelete = "Houve um erro ao remover o registro";
+        public const string UserNotFound = "Usuario ou senha inválidas";
 
         //Não encontrados
         public const string NotFoundGet = "Nenhum registro foi encontrado";
