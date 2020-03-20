@@ -12,7 +12,7 @@
       <div *ngIf="message.error" class="alert alert-danger">
         {{message.error}}
       </div>
-      <input type="text" id="login" class="fadeIn second" #crtlUser="ngModel" [(ngModel)]="user.login" minlength="3"
+      <input type="text" id="login" class="fadeIn second" #crtlUser="ngModel" [(ngModel)]="user.mail" minlength="3"
         required name="login" placeholder="login" autocomplete="off"/>
 
       <input type="password" id="password" class="fadeIn third" #crtlPassword="ngModel" [(ngModel)]="user.password"

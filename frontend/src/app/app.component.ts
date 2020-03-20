@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppService } from './service/app.service';
 import { AppConstants } from './app-constants';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,15 @@ export class AppComponent {
 
   constructor(private appService: AppService) { }
 
-  user = { login: '', password: '' };
+  user = { mail: '', password: '' };
   message = { error: '' };
+  response;
 
-  public submit() {
-    if (this.user.login == '' || this.user.password == '')
-      this.message.error = "Usuario e senha são obrigatórios";
-    else {
+  public async submit() {
       this.message.error = '';
-      var teste = this.appService.SendToApi( '/Auth/Login',this.user);
-    }
+      this.response = '';
+      this.response =  await this.appService.SendToApi( '/User/login',this.user);
+      if(this.response.message != null)
+        this.message.error  = this.response.message;
   }
 }
