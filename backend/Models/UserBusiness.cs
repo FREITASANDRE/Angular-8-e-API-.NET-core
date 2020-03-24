@@ -58,14 +58,16 @@ namespace App_Api.Models
 
                 var lUser = await _context
                                     .Users
-                                     .AsNoTracking()
-                                         .FirstOrDefaultAsync(x => x.Mail == pMail && x.Password == pPassword && x.Status == "A");
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync(x => x.Mail == pMail 
+                                                                && x.Password == pPassword
+                                                                && x.Status == "A");
 
                 if (lUser != null)
                 {
                     return new Response<User>()
                     {
-                        Message = BaseMessages.SuccessGet,
+                        Message = BaseMessages.UserFound,
                         Status = ResultStatus.Success,
                         Result = lUser
                     };
@@ -74,7 +76,7 @@ namespace App_Api.Models
                 return new Response<User>()
                 {
                     Message = BaseMessages.UserNotFound,
-                    Status = ResultStatus.Success,
+                    Status = ResultStatus.Error,
                     Result = null
                 };
             }

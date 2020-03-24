@@ -1,31 +1,28 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+<div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" [hidden]="hideMenu()">
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <h5>Acesso ao sistema</h5>
-    </div>
-
-    <!-- Login Form -->
-    <form>
-      <div *ngIf="message.error" class="alert alert-danger">
-        {{message.error}}
-      </div>
-      <input type="text" id="login" class="fadeIn second" #crtlUser="ngModel" [(ngModel)]="user.mail" minlength="3"
-        required name="login" placeholder="login" autocomplete="off"/>
-
-      <input type="password" id="password" class="fadeIn third" #crtlPassword="ngModel" [(ngModel)]="user.password"
-        minlength="3" required name="password" placeholder="senha" autocomplete="off"/>
-
-      <input type="button" (click)="submit()" class="fadeIn fourth" value="Acessar" [disabled]="crtlUser.invalid || crtlPassword.invalid "/>
-    </form>
-
-    <!-- Remind Passowrd
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-     -->
-
-  </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Sair</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
 </div>

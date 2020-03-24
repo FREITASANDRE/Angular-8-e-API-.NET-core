@@ -1,27 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './service/app.service';
-import { AppConstants } from './app-constants';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'first-app';
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
-  user = { mail: '', password: '' };
-  message = { error: '' };
-  response;
+    ngOnInit(): void{
 
-  public async submit() {
-      this.message.error = '';
-      this.response = '';
-      this.response =  await this.appService.SendToApi( '/User/login',this.user);
-      if(this.response.message != null)
-        this.message.error  = this.response.message;
-  }
+      if(localStorage.getItem("user") == null){
+        this.router.navigate(['login']);
+      }else{
+        this.router.navigate(['home']);
+      }
+    }
+
+    public logout (){
+      localStorage.clear();
+      this.router.navigate(['login']);
+    }
+
+    public hideMenu(){
+      if(localStorage.getItem("user") == null){
+        return true;
+      }else{
+        return false;
+      }
+    }
 }
