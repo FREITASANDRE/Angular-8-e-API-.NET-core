@@ -18,7 +18,8 @@ namespace App_Api.Controllers
             _userBusiness = pUserBusiness;
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("getall")]
         public async Task<ActionResult> Get()
         {
             var lResult = await _userBusiness.GetAll();

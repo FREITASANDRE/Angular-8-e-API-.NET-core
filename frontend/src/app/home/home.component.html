@@ -1,22 +1,22 @@
-<p>Página Inicial</p>
+<h5 class="breadcrumb">Usuários</h5>
+
+<div class="form-group">
+    <table class="table table-condensed">
+        <thead class="thead">
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.mail}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
-<table class="table-stripped">
-    <thead>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Status</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Jose</td>
-            <td>22</td>
-            <td>Ativo</td>
-        </tr>
-        <tr>
-            <td>Maria</td>
-            <td>21</td>
-            <td>Ativo</td>
-        </tr>
-    </tbody>
-</table>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" bdOpacity=0.3 size="default" color="#56baed" type="ball-clip-rotate">
+</ngx-spinner>

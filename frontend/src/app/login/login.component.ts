@@ -10,25 +10,25 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoginComponent implements OnInit{
 
-  constructor(private appService: AppService, private router: Router,private SpinnerService: NgxSpinnerService) { }
+  constructor(private appService: AppService, private router: Router,private spinnerService: NgxSpinnerService) { }
 
   user = { mail: '', password: '' };
   message = { error: '' };
   response;
 
   ngOnInit():void{
-    this.SpinnerService.hide();
+    this.spinnerService.hide();
   }
 
   public async submit() {
-      this.SpinnerService.show(); 
+      this.spinnerService.show(); 
       this.message.error = '';
       this.response =  await this.appService.SendToApi( '/User/login',this.user);
       if(this.response.status == 0){
         localStorage.setItem('user',this.response.result.id)
         this.router.navigate(['home']);
       }else{
-        this.SpinnerService.hide(); 
+        this.spinnerService.hide(); 
         this.message.error = this.response.message;
       }
   }

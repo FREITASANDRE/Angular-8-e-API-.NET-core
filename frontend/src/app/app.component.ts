@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
   styleUrls: []
 })
 export class AppComponent implements OnInit {
-  title = 'first-app';
 
   constructor(private appService: AppService, private router: Router) { }
 
