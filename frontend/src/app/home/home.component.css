@@ -275,4 +275,6 @@ html {
     opacity: 0.1;
   }
 
-  
+  .actionButton{
+    margin-right: 5px !important;
+  }

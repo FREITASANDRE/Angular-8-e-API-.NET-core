@@ -1,0 +1,57 @@
+<div class="form-group">
+    <div class="header" style="margin:15px;">
+        <h5>{{type}} de Usuários</h5>
+    </div>
+</div>
+<ngx-snackbar [position]="'top-right'" [max]="1" [timeout]="1000"></ngx-snackbar>
+<form style="padding: 10px">
+
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="user.id" readonly="true" name="id" autocomplete="false">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="info">Nome</label>
+            <input type="text" class="form-control" id="info" [(ngModel)]="user.name" required="true" name="info" autocomplete="false">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="login">Login</label>
+            <input type="text" class="form-control" id="login" [(ngModel)]="user.mail" name="login"  required="true" autocomplete="false">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="pass">Senha</label>
+            <input type="password" class="form-control" id="pass" [(ngModel)]="user.password" name="pass" required="true" autocomplete="false">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="status">Status</label>
+            <select class="form-control" [(ngModel)]="user.status" name="status">
+                <option value="" selected>Selecione</option>
+                <option value="A">Ativo</option>
+                <option value="I">Inativo</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" [routerLink]="['/home']"
+                routerLinkActive="router-link-active">Voltar</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="save()">Salvar</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="newUser()">Novo</button>
+        </div>
+    </div>
+
+</form>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" bdOpacity=0.3 size="default" color="#56baed" type="ball-clip-rotate">
+</ngx-spinner>

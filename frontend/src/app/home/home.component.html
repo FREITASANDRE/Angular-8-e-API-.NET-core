@@ -1,17 +1,36 @@
-<h5 class="breadcrumb">Usuários</h5>
+<div class="form-group">
+    <div class="header" style="margin:15px;">
+        <h5>Lista de Usuários</h5>
+    </div>
+</div>
 
+<div class="form-inline" style="margin:15px;">
+
+    <input type="text" class="form-control" placeholder="Filtrar" />
+    <div style="margin-left: 5px;">
+        <button class="btn btn-primary" title="Adicionar" [routerLink]="['/user']" routerLinkActive="router-link-active" >Novo</button>
+    </div>
+</div>
 <div class="form-group">
     <table class="table table-condensed">
         <thead class="thead">
             <th>Id</th>
             <th>Nome</th>
-            <th>Email</th>
+            <th>Login</th>
+            <th>Status</th>
+            <th>Ações</th>
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
                 <td>{{user.id}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.mail}}</td>
+                <td class="{{user.status == 'I'? 'warn' : 'primary'}}">{{ user.status == 'I'? 'Inativo' : 'Ativo'}}</td>
+                <td><button class="btn {{user.status == 'I'? 'btn-success' : 'btn-warning'}} actionButton"
+                        style="margin-right: 5px; min-width: 42px;" (click)="changeStatus(user)"><i
+                            class="{{user.status == 'I'? 'fa fa-check' : 'fa fa-trash'}}"></i></button>
+                    <button [routerLink]="['/user', user.id]" routerLinkActive="router-link-active"
+                        class="btn btn-primary actionButton"><i class="fa fa-pencil"></i></button></td>
             </tr>
         </tbody>
     </table>

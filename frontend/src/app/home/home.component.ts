@@ -12,17 +12,31 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class HomeComponent implements OnInit {
 
   response;
-  users : Observable<User[]>;
+  users: Observable<User[]>;
 
   constructor(private appService: AppService, private spinnerService: NgxSpinnerService) { }
 
-  async ngOnInit() {
-    this.spinnerService.show(); 
-    this.response =  await this.appService.SendToApi( '/User/getall',null);
-      if(this.response.status == 0){
-        this.users = this.response.result;
-        this.spinnerService.hide(); 
-      }
+  ngOnInit() {
+    this.reload();
+  }
+
+  async changeStatus(user: User) {
+    this.spinnerService.show();
+    user.status = user.status == "A" ? "I" : "A";
+    this.response = await this.appService.SendToApi('/User/update', user);
+    if (this.response.status == 0) {
+      this.reload();
+      this.spinnerService.hide();
+    }
+  }
+
+  async reload() {
+    this.spinnerService.show();
+    this.response = await this.appService.SendToApi('/User/getall', null);
+    if (this.response.status == 0) {
+      this.users = this.response.result;
+      this.spinnerService.hide();
+    }
   }
 
 }
