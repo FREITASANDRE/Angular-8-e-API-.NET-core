@@ -59,7 +59,7 @@ namespace App_Api.Models
                 var lUser = await _context
                                     .Users
                                     .AsNoTracking()
-                                    .FirstOrDefaultAsync(x => x.Mail == pMail 
+                                    .FirstOrDefaultAsync(x => x.Mail == pMail
                                                                 && x.Password == pPassword
                                                                 && x.Status == "A");
 
@@ -85,6 +85,94 @@ namespace App_Api.Models
                 return new Response<User>()
                 {
                     Message = lEx.Message,
+                    Status = ResultStatus.Error,
+                    Result = null
+                };
+            }
+        }
+        public async Task<Response<User>> Update(User pUser)
+        {
+            try
+            {
+
+                _context.Update(pUser);
+                await _context.SaveChangesAsync();
+
+                return new Response<User>()
+                {
+                    Message = BaseMessages.SuccessUpdate,
+                    Status = ResultStatus.Success,
+                    Result = pUser
+                };
+
+            }
+            catch (Exception lEx)
+            {
+                return new Response<User>()
+                {
+                    Message = lEx.Message,
+                    Status = ResultStatus.Error,
+                    Result = null
+                };
+            }
+        }
+
+        public async Task<Response<User>> Create(User pUser)
+        {
+            try
+            {
+                _context.Add(pUser);
+                await _context.SaveChangesAsync();
+
+                return new Response<User>()
+                {
+                    Message = BaseMessages.SuccessInsert,
+                    Status = ResultStatus.Success,
+                    Result = pUser
+                };
+
+            }
+            catch (Exception lEx)
+            {
+                return new Response<User>()
+                {
+                    Message = lEx.Message,
+                    Status = ResultStatus.Error,
+                    Result = null
+                };
+            }
+        }
+
+
+        public async Task<Response<User>> GetById(int pId)
+        {
+            try
+            {
+                var lUser = await _context.Users
+                                         .AsNoTracking()
+                                         .FirstOrDefaultAsync(x => x.Id == pId);
+
+                if (lUser != null)
+                    return new Response<User>()
+                    {
+                        Message = BaseMessages.SuccessGet,
+                        Status = ResultStatus.Success,
+                        Result = lUser
+                    };
+                else
+                    return new Response<User>()
+                    {
+                        Message = BaseMessages.NotFoundGet,
+                        Status = ResultStatus.Error,
+                        Result = null
+                    };
+
+            }
+            catch (Exception)
+            {
+                return new Response<User>()
+                {
+                    Message = BaseMessages.ErrorGet,
                     Status = ResultStatus.Error,
                     Result = null
                 };

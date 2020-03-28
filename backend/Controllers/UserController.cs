@@ -36,5 +36,32 @@ namespace App_Api.Controllers
             return Ok(lResult);
         }
 
+        [HttpPost]
+        [Route("update")]
+        public async Task<ActionResult> Update(User pUser)
+        {
+            var lResult = await _userBusiness.Update(pUser);
+
+            return Ok(lResult);
+        }
+
+        [HttpPost]
+        [Route("")]
+        public async Task<ActionResult> Create(User pUser)
+        {
+            var lResult = await _userBusiness.Create(pUser);
+
+            return Ok(lResult);
+        }
+
+        [HttpPost]
+        [Route("getbyid/{pId:int}")]
+        public async Task<ActionResult> GetById(int pId)
+        {
+            var lResult = await _userBusiness.GetById(pId);
+
+            return Ok(lResult);
+        }
+
     }
 }
