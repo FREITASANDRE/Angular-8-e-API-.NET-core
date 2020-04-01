@@ -6,7 +6,7 @@
 
 <div class="form-inline" style="margin:15px;">
 
-    <input type="text" class="form-control" placeholder="Filtrar" />
+    <input type="text" class="form-control" placeholder="Filtrar"  [(ngModel)]="filter"/>
     <div style="margin-left: 5px;">
         <button class="btn btn-primary" title="Adicionar" [routerLink]="['/user']" routerLinkActive="router-link-active" >Novo</button>
     </div>
@@ -21,7 +21,7 @@
             <th>Ações</th>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users | filter:filter;">
                 <td>{{user.id}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.mail}}</td>

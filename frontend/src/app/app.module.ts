@@ -10,6 +10,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import {SnackbarModule} from 'ngx-snackbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserComponent } from './user/user.component';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     SnackbarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
