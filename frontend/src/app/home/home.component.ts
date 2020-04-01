@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styles: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  filter: string = "";
   response;
   users: Observable<User[]>;
 
