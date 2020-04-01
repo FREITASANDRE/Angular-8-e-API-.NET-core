@@ -11,11 +11,8 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) { }
 
     ngOnInit(): void{
-
       if(localStorage.getItem("user") == null){
         this.router.navigate(['login']);
-      }else{
-        this.router.navigate(['home']);
       }
     }
 

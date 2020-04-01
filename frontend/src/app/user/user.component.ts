@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
       this.user = this.response.result;
       this.showSnackBar(this.response.message, "#33cc33");
       this.spinnerService.hide();
-    }else{
+    } else {
       this.showSnackBar(this.response.message, "#e60000");
       this.spinnerService.hide();
     }
@@ -63,9 +63,9 @@ export class UserComponent implements OnInit {
     this.user = new User();
   }
 
-  showSnackBar(pMessage , color){
+  showSnackBar(pMessage, color) {
     this.snackbarService.add({
-      msg: "<strong>"+pMessage+"</strong>",
+      msg: "<strong>" + pMessage + "</strong>",
       background: color,
       timeout: 3000,
       action: {
