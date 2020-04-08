@@ -1,14 +1,11 @@
-using App_Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using AppContext = App_Api.Models.AppContext;
-
+using App_Api.Database;
+using App_Api.Business;
 namespace App_Api
 {
     public class Startup
@@ -23,7 +20,7 @@ namespace App_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppContext>(options =>
+            services.AddDbContext<DBContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("MySqlConnection"))
             );
 

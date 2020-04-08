@@ -4,6 +4,7 @@ import { AppService } from '../service/app.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SnackbarService } from 'ngx-snackbar';
 import { User } from '../model/user';
+import { Address } from '../model/address';
 
 @Component({
   selector: 'app-user',
@@ -20,6 +21,7 @@ export class UserComponent implements OnInit {
   type: string = '';
   response;
   user = new User();
+
   ngOnInit(): void {
     this.load();
   }
@@ -32,12 +34,15 @@ export class UserComponent implements OnInit {
       this.response = await this.appService.SendToApi('/User/getById/' + id, null);
       if (this.response.status == 0) {
         this.user = this.response.result;
-        this.spinnerService.hide();
+        if (this.user.address === null || this.user.address === undefined) {
+          this.user.address = new Address();
+        }
       }
     } else {
       this.type = 'Cadastro';
-      this.spinnerService.hide();
+      this.newUser();
     }
+    this.spinnerService.hide();
 
   }
 
@@ -51,16 +56,16 @@ export class UserComponent implements OnInit {
     if (this.response.status == 0) {
       this.user = this.response.result;
       this.showSnackBar(this.response.message, "#33cc33");
-      this.spinnerService.hide();
     } else {
       this.showSnackBar(this.response.message, "#e60000");
-      this.spinnerService.hide();
     }
+    this.spinnerService.hide();
 
   }
 
   newUser() {
     this.user = new User();
+    this.user.address = new Address();
   }
 
   showSnackBar(pMessage, color) {

@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit{
 
   ngOnInit():void{
     this.spinnerService.hide();
+    if(localStorage.getItem("user") !== null){
+      this.router.navigate(['home']);
+    }
   }
 
   public async submit() {

@@ -39,6 +39,17 @@
         </div>
 
     </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="street">Endereço</label>
+            <input type="text" class="form-control" id="street" [(ngModel)]="user.address.street"  name="street" autocomplete="false">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="number">Número</label>
+            <input type="text" class="form-control" id="number" [(ngModel)]="user.address.number" name="number"   autocomplete="false">
+        </div>
+    </div>
+    
 
 
     <div class="form-row">
